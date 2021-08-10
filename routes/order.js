@@ -22,6 +22,7 @@ router.post(
 );
 
 router.get("/order/list/:userId", requireSignin, isAuth, isAdmin, listOrders);
+
 router.get(
   "/order/status-values/:userId",
   requireSignin,
@@ -29,6 +30,7 @@ router.get(
   isAdmin,
   getStatusValues
 );
+
 router.put(
   "/order/:orderId/status/:userId",
   requireSignin,
