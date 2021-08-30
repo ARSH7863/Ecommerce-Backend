@@ -9,7 +9,7 @@ exports.signup = (req, res) => {
   user.save((err, user) => {
     if (err) {
       return res.status(400).json({
-        error: errorHandler(err),
+        err: errorHandler(err),
       });
     }
     user.salt = undefined;
