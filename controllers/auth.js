@@ -26,13 +26,13 @@ exports.signin = (req, res) => {
   User.findOne({ email }, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: "User with that email does not exist.Please Signup",
+        error: "Invalid Credentials!",
       });
     }
     //if user is found email and password should match
     if (!user.authenticate(password)) {
       return res.status(401).json({
-        error: "Email and password do not match",
+        error: "Invalid Credentials!",
       });
     }
     //create authenticate method in user model
@@ -62,7 +62,7 @@ exports.isAuth = (req, res, next) => {
   let user = req.profile && req.auth && req.profile._id == req.auth._id;
   if (!user) {
     return res.status(403).json({
-      error: "Access Denied",
+      error: "Access Denied!",
     });
   }
   next();
@@ -71,7 +71,7 @@ exports.isAuth = (req, res, next) => {
 exports.isAdmin = (req, res, next) => {
   if (req.profile.role === 0) {
     return res.status(403).json({
-      error: "Admin resource: Access Denied",
+      error: "Access Denied!",
     });
   }
   next();
