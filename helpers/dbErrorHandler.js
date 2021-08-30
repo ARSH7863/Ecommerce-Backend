@@ -25,20 +25,21 @@ const uniqueMessage = (error) => {
  * Get the erroror message from error object
  */
 exports.errorHandler = (error) => {
-  let message = "Email already Exists";
+  let message = "";
 
   if (error.code) {
     switch (error.code) {
-      case 11000:
+      // case 11000:
       case 11001:
-        // message = uniqueMessage(error);
+        message = uniqueMessage(error);
         break;
       default:
-        message = "Something went wrong";
+        message = "Email Already Exists";
     }
   } else {
     for (let errorName in error.errorors) {
-      if (error.errorors[errorName].message) message = message;
+      if (error.errorors[errorName].message)
+        message = error.errorors[errorName].message;
     }
   }
 
